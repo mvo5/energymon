@@ -1,0 +1,19 @@
+name: energymon-mvo
+summary: Monitor/store energy data from a smart meter using SML
+description: |
+      Monitor/store energy data from a smart meter using SML
+version: git
+grade: stable
+base: core20
+
+apps:
+  energymon-mvo:
+    command: bin/energymon
+    daemon: simple
+    plugs: ["network-bind"]
+
+parts:
+  energymon:
+    plugin: python
+    requirements: ["requirements.txt"]
+    source: .
