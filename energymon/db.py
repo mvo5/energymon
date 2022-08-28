@@ -2,7 +2,7 @@ import datetime
 
 import sqlite3
 
-from energymon import EnergyStats
+from energymon.energymon import EnergyStats
 
 
 class EnergyDatabase:

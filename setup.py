@@ -9,5 +9,6 @@ setup(
     author="Michael Vogt",
     author_email="michael.vogt@gmail.com",
     url="https://github.com/mvo5/energymon",
-    scripts=["energymon"],
+    packages=["energymon"],
+    scripts=["bin/energymon"],
 )

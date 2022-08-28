@@ -4,8 +4,8 @@ import datetime
 import logging
 import sys
 
-from energymon import EnergyMon, EnergyStats
-from db import EnergyDatabase
+from energymon.energymon import EnergyMon, EnergyStats
+from energymon.db import EnergyDatabase
 
 
 class DebugEnergyStats:
