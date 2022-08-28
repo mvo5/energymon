@@ -71,4 +71,4 @@ class EnergyMon:
                 try:
                     fn(self._current)
                 except Exception as e:
-                    logging.debug(f"cannot call callback {fn}: {e}")
+                    logging.info(f"cannot call callback {fn}: {e}")
