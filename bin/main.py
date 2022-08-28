@@ -20,15 +20,15 @@ class DebugEnergyStats:
 
 def main():
     logging.basicConfig(level=logging.INFO)
-    device = sys.argv[1]
-    mon = EnergyMon(device)
+    # TODO: add a way to pass serial_device
+    mon = EnergyMon()
     # log stats to stdout for debugging
     debug_logger = DebugEnergyStats()
     mon.add_callback(debug_logger.log_periodic)
     # add a database
     db = EnergyDatabase("energy.db")
     mon.add_callback(db.store_periodic)
-    logging.info(f"starting energy monitor at {device}")
+    logging.info(f"starting energy monitor")
     mon.loop_forever()
 
 

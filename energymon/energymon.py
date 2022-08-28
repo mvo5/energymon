@@ -38,7 +38,7 @@ class EnergyStats:
 
 
 class EnergyMon:
-    def __init__(self, serial_device: str):
+    def __init__(self, serial_device: str = "/dev/ttyUSB0"):
         self._serial = serial.Serial(serial_device, 9600)
         self._current: Optional[EnergyStats] = None
         self._stream = SmlStreamReader()
