@@ -10,7 +10,7 @@ apps:
   energymon-mvo:
     command: bin/energymon
     daemon: simple
-    plugs: ["network-bind"]
+    plugs: ["network-bind", "serial-port"]
 
 parts:
   energymon:
