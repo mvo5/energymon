@@ -11,7 +11,7 @@ from energymon.db import EnergyDatabase
 def main():
     dbpath = sys.argv[1]
     db = EnergyDatabase(dbpath)
-    raw_dates, energy = db._get_data()
+    raw_dates, energy = db._get_graph_data()
     dates = matplotlib.dates.epoch2num(raw_dates)
     fig, ax = plt.subplots()
     ax.plot(dates, energy)

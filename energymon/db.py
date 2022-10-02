@@ -43,7 +43,14 @@ class EnergyDatabase:
                     ),
                 )
 
-    def _get_first_day(self):
+    def _get_all_current_power(self):
+        with sqlite3.connect(self._dbpath) as conn:
+            cur = conn.execute(
+                """SELECT "when","current_power" FROM "energy_stats" ASC"""
+            )
+            return cur
+                
+    def _get_first_entry(self):
         with sqlite3.connect(self._dbpath) as conn:
             cur = conn.execute(
                 """SELECT "when" FROM "energy_stats" ASC LIMIT 1"""
@@ -52,7 +59,7 @@ class EnergyDatabase:
             dt = datetime.datetime.fromtimestamp(unix_time)
             return dt
 
-    def _get_data(self):
+    def _get_graph_data(self):
         with sqlite3.connect(self._dbpath) as conn:
             cur = conn.execute(
                 """SELECT "when","current_power" FROM "energy_stats" ASC"""
