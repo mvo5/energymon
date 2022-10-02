@@ -42,3 +42,21 @@ class EnergyDatabase:
                         stats.total_power_out,
                     ),
                 )
+
+    def _get_first_day(self):
+        with sqlite3.connect(self._dbpath) as conn:
+            cur = conn.execute(
+                """SELECT "when" FROM "energy_stats" ASC LIMIT 1"""
+            )
+            unix_time = cur.fetchone()[0]
+            dt = datetime.datetime.fromtimestamp(unix_time)
+            return dt
+
+    def _get_data(self):
+        with sqlite3.connect(self._dbpath) as conn:
+            cur = conn.execute(
+                """SELECT "when","current_power" FROM "energy_stats" ASC"""
+            )
+            energy_pairs = cur.fetchall()
+            timestaps, energies = zip(*energy_pairs)
+            return timestaps, energies
