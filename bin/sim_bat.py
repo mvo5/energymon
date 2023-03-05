@@ -63,9 +63,11 @@ class BatterySimulator:
         total_time = last_dt - first_dt
         bat_kw = self._energy_from_battery/1000
         # fugly, return sensible data instead
-        print(f"Total {bat_kw:.2f} kWh taken from battery in {total_time}")
-        print(f"Total taken from grid {self._energy_from_grid/1000:.2f} kWh")
-        print(f"Total given to grid {self._energy_to_grid/1000:.2f} kWh")
+        print(f"Simulated battery capacity {self._cap/1000.0}kWh, cost per kwh {self._cost_per_kwh}€")
+        print(f"Simulated for {total_time.days} days starting {self._db._get_first_entry()}")
+        print(f"Total taken from battery: {bat_kw:.2f} kWh")
+        print(f"Total taken from grid: {self._energy_from_grid/1000:.2f} kWh")
+        print(f"Total given to grid: {self._energy_to_grid/1000:.2f} kWh")
         money = bat_kw*self._cost_per_kwh
         print(f"Money {money:.2f}€")
         return time, bat_cap
@@ -81,7 +83,7 @@ def main():
     fig, ax = plt.subplots()
     fig.set_figwidth(200)
     ax.plot(dates, energy)
-    loc = matplotlib.dates.HourLocator(interval=2)
+    loc = matplotlib.dates.HourLocator(interval=12)
     ax.xaxis.set_major_locator(loc)
     fmt = RealConciseFormatter()
     ax.xaxis.set_major_formatter(fmt)
