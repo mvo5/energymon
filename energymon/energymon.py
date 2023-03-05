@@ -3,6 +3,7 @@ from typing import Callable, List, Optional
 import datetime
 from dataclasses import dataclass
 import logging
+import time
 
 import serial
 
@@ -59,6 +60,10 @@ class EnergyMon:
         self._serial.close()
 
     def _read(self):
+        # ensure there is enough buffer
+        if self._serial.inWaiting() < 50:
+            time.sleep(0.05)
+            return
         data = self._serial.read(512)
         self._stream.add(data)
         while True:
