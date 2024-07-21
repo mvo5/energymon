@@ -10,5 +10,6 @@ setup(
     author_email="michael.vogt@gmail.com",
     url="https://github.com/mvo5/energymon",
     packages=["energymon"],
+    py_modules=["energymon"],
     scripts=["bin/energymon"],
 )
